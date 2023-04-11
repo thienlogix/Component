@@ -9,7 +9,7 @@ class ClassComponent extends Component {
   componentDidMount() {
     // first call after rendered component
     this._listAsync();
-    this.updatedName();
+    this._updatedName();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -35,7 +35,7 @@ class ClassComponent extends Component {
           return (
             <>
               <button onClick={this._increase}>
-                FunctionComponent {this.state.counter}
+                ClassComponent {this.state.counter}
               </button>
             </>
           );
@@ -66,9 +66,9 @@ class ClassComponent extends Component {
     // });
   };
 
-  updatedName() {
+  _updatedName = () => {
     console.log("updatedName", this.setState);
-  }
+  };
 }
 
 ClassComponent.contextType = StudentContext;

@@ -4,19 +4,18 @@ import StudentContext from "./StudentContext";
 function FunctionComponent(props) {
   // Way 1
   const context = useContext(StudentContext);
-  console.log("funnction-component outside", context);
+  //console.log("funnction-component outside", context);
 
   // DEMO
-
   const [counter, setCounter] = useState(0);
   useEffect(() => {}, [counter]); // <- dependencies
 
-  const [orders, fetchOrders] = useListOrder(counter);
+  const [orders, fetchOrders] = useListOrder();
   useEffect(() => {
     // componentDidMount
 
     // first call after rendered component
-    // fetchOrders();
+    fetchOrders();
 
     // updated each props or state change
     return () => {
@@ -29,8 +28,8 @@ function FunctionComponent(props) {
 
   function increase() {
     setCounter((currentState) => currentState + 1);
-    setCounter((currentState) => currentState + 1);
-    setCounter((currentState) => currentState + 1);
+    //setCounter((currentState) => currentState + 1);
+    //setCounter((currentState) => currentState + 1);
 
     // Avoid
     // setCounter(counter + 1);
@@ -40,12 +39,13 @@ function FunctionComponent(props) {
 
   return (
     <StudentContext.Consumer>
-      {(context) => {
-        console.log("function component inside context consumer", context);
+      {/* {(context) => { */}
+      {({ author, students }) => {
         return (
           <>
             <button onClick={increase}>
-              {props.counter} FunctionComponent {counter}: {orders.lenth}
+              {props.counter} FunctionComponent {counter}: {author}: {students}:
+              orders {orders}
             </button>
           </>
         );
@@ -55,12 +55,12 @@ function FunctionComponent(props) {
 }
 
 // HOOK
-function useListOrder(counter) {
+function useListOrder() {
   const [items, setItems] = useState([]);
 
   async function listAsync() {
     // calling API
-    const items = await listAsync();
+    const items = 12;
     setItems(items);
   }
 

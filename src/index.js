@@ -10,7 +10,7 @@ root.render(
   <React.StrictMode>
     <StudentContext.Provider
       value={{
-        students: [],
+        students: [1, 2, 3],
         author: "vu.nguyen",
       }}
     >
