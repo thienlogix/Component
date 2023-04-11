@@ -13,7 +13,7 @@ function FunctionComponent(props) {
   const [orders, fetchOrders] = useListOrder();
   useEffect(() => {
     // componentDidMount
-
+    console.log("funnction-component outside", context);
     // first call after rendered component
     fetchOrders();
 

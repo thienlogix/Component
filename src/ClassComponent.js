@@ -8,8 +8,9 @@ class ClassComponent extends Component {
 
   componentDidMount() {
     // first call after rendered component
-    this._listAsync();
-    this._updatedName();
+    //this._listAsync();
+    //this._updatedName();
+    //const clValue = this.context;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -25,13 +26,15 @@ class ClassComponent extends Component {
     // destroy component when move out of view
   }
 
+  static contextType = StudentContext;
+
   render() {
-    console.log("class component outside", this.context);
+    console.log(this.context);
 
     return (
       <StudentContext.Consumer>
         {(context) => {
-          console.log("class component inside context consumer", context);
+          //console.log("class component inside context consumer", context);
           return (
             <>
               <button onClick={this._increase}>
@@ -67,11 +70,11 @@ class ClassComponent extends Component {
   };
 
   _updatedName = () => {
-    console.log("updatedName", this.setState);
+    //console.log("updatedName", this.setState);
   };
 }
 
-ClassComponent.contextType = StudentContext;
+//ClassComponent.contextType = StudentContext;
 ClassComponent.propTypes = {};
 ClassComponent.defaultProps = {};
 
