@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useState, memo, useCallback, PureComponent, Component } from "react";
 
 function onOuterFunction() {}
@@ -12,20 +12,27 @@ export default function Performance() {
 
   function increase() {
     // console.log("counter value: ", counter);
-    setCounter((c) => c + 1);
+    setCounter((_) => _ + 1);
+
     if (counter === 1) {
-      setParams((currentState) => ({
-        ...currentState,
+      setParams((_) => ({
+        ..._,
         test: 1,
       }));
     }
   }
 
-  function test() {}
+  function testa() {
+    console.log(params);
+  }
+
+  useEffect(() => {
+    testa();
+  });
 
   const columns = [];
 
-  const wrapTest = useCallback(test, []);
+  const wrapTest = useCallback(testa, []);
   const wrapColumn = useMemo(() => columns, []);
 
   return (
@@ -33,9 +40,10 @@ export default function Performance() {
       <h1>Counter: {counter}</h1>
       <button onClick={increase}>outter increase</button>
       {/* Render props */}
-      <FunctionComponent method={() => "test"} />
+      {/* <FunctionComponent method={() => "test"} />
       <FunctionMemoComponent columns={wrapColumn} test={wrapTest} />
       <ClassPureComponent columns={wrapColumn} test={wrapTest} />
+       */}
       <ClassComponent />
     </div>
   );
@@ -87,7 +95,7 @@ class ClassComponent extends Component {
   };
 
   render() {
-    console.log("class component rendering");
+    //console.log("class component rendering");
     const colu = [];
     return (
       <div
@@ -98,7 +106,9 @@ class ClassComponent extends Component {
         }}
       >
         <div>Class Component</div>
-        <button onClick={this.setCounter}>increase {this.state.counter}</button>
+        <button onClick={this.setCounter2}>
+          increase {this.state.counter}
+        </button>
         <Test onTest={this.setCounter} column={this.state.counter} />
       </div>
     );
@@ -108,6 +118,10 @@ class ClassComponent extends Component {
     this.setState({
       counter: 0,
     });
+  };
+
+  setCounter2 = () => {
+    this.setState((_) => ({ counter: _.counter + 1 }));
   };
 }
 
@@ -124,7 +138,6 @@ class ClassPureComponent extends PureComponent {
   render() {
     console.log("class pure component rendering");
 
-    const colun = [];
     return (
       <div
         style={{

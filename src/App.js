@@ -8,8 +8,8 @@ import Performance from "./Performance";
 function App() {
   return (
     <div className="App">
-      <ProductPage />
-      {/* <Performance /> */}
+      {/* <ProductPage /> */}
+      <Performance />
     </div>
   );
 }

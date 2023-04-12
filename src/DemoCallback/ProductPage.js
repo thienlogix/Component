@@ -19,12 +19,18 @@ function ProductPage(props) {
 
   const test2 = useMemo(() => <ShippingForm />, []);
 
+  const test3 = () => {
+    console.log("test3");
+  };
+
+  const test4 = 123;
+
   return (
     <>
       <div>ProductPage: {count}</div>
       <button onClick={increaseCallback}>Callback {count}</button>
-      {/* <ShippingForm count={val} /> */}
-      <ShippingClass test={test2} />
+      <ShippingForm test={test4} />
+      {/* <ShippingClass test={test3} /> */}
     </>
   );
 }
