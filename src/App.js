@@ -1,17 +1,13 @@
-import React from "react";
-import "./App.css";
-import FunctionComponent from "./FunctionComponent";
-import ClassComponent from "./ClassComponent";
-import ProductPage from "./DemoCallback/ProductPage";
-import Performance from "./Performance";
+import AddTask from "./AddTask/AddTask.js";
+import TaskList from "./AddTask/TaskList.js";
+import { TasksProvider } from "./AddTask/TasksContext.js";
 
-function App() {
+export default function TaskApp() {
   return (
-    <div className="App">
-      {/* <ProductPage /> */}
-      <Performance />
-    </div>
+    <TasksProvider>
+      <h1>Day off in Kyoto</h1>
+      <AddTask />
+      <TaskList />
+    </TasksProvider>
   );
 }
-
-export default App;
